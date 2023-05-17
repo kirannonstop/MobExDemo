@@ -1,14 +1,10 @@
+import 'package:first_mobex_flutter_project/mobx/repository/counter_repository.dart';
 import 'package:first_mobex_flutter_project/mobx/store/counter_store/counter_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-class CounterExample extends StatefulWidget {
-  @override
-  State<CounterExample> createState() => _CounterExampleState();
-}
-
-class _CounterExampleState extends State<CounterExample> {
-  Counter counter = Counter();
+class CounterExample extends StatelessWidget {
+  CounterRepository counterRepository = CounterStore();
   int valueRes = 0;
 
   @override
@@ -18,32 +14,28 @@ class _CounterExampleState extends State<CounterExample> {
       child: Column(
         children: [
           Observer(builder: (_) {
-            return Text("VALUE ${counter.valueRes}");
+            return Text(
+              "Value ${counterRepository.getCounter()} , Computed Value ${counterRepository.getCoumputedValue()}",
+              style: TextStyle(fontSize: 20),
+            );
           }),
-          const SizedBox(
-            height: 20,
-          ),
-          Text("COMPUTED VALUE --> ${counter.doubleValue}"),
           const SizedBox(
             height: 20,
           ),
           ElevatedButton(
             onPressed: () {
-              counter.increment();
+              counterRepository.incrementCounter();
             },
             child: Text("INCREMENT VALUE"),
           ),
           const SizedBox(
             height: 20,
           ),
-          Text("FROM THIS VIEW $valueRes"),
           ElevatedButton(
             onPressed: () {
-              setState(() {
-                this.valueRes++;
-              });
+              counterRepository.decrementCounter();
             },
-            child: Text("INCREMENT ON THIS PAGE"),
+            child: Text("DECREMENT VALUE"),
           ),
           const SizedBox(
             height: 20,

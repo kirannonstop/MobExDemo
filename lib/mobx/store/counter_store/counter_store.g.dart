@@ -8,15 +8,17 @@ part of 'counter_store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
-mixin _$Counter on _Counter, Store {
+mixin _$CounterStore on _CounterStore, Store {
   Computed<int>? _$doubleValueComputed;
 
   @override
-  int get doubleValue => (_$doubleValueComputed ??=
-          Computed<int>(() => super.doubleValue, name: '_Counter.doubleValue'))
-      .value;
+  int get doubleValue =>
+      (_$doubleValueComputed ??= Computed<int>(() => super.doubleValue,
+              name: '_CounterStore.doubleValue'))
+          .value;
 
-  late final _$valueResAtom = Atom(name: '_Counter.valueRes', context: context);
+  late final _$valueResAtom =
+      Atom(name: '_CounterStore.valueRes', context: context);
 
   @override
   int get valueRes {
@@ -31,28 +33,28 @@ mixin _$Counter on _Counter, Store {
     });
   }
 
-  late final _$_CounterActionController =
-      ActionController(name: '_Counter', context: context);
+  late final _$_CounterStoreActionController =
+      ActionController(name: '_CounterStore', context: context);
 
   @override
-  void increment() {
-    final _$actionInfo =
-        _$_CounterActionController.startAction(name: '_Counter.increment');
+  void incrementCounter() {
+    final _$actionInfo = _$_CounterStoreActionController.startAction(
+        name: '_CounterStore.incrementCounter');
     try {
-      return super.increment();
+      return super.incrementCounter();
     } finally {
-      _$_CounterActionController.endAction(_$actionInfo);
+      _$_CounterStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void decrement() {
-    final _$actionInfo =
-        _$_CounterActionController.startAction(name: '_Counter.decrement');
+  void decrementCounter() {
+    final _$actionInfo = _$_CounterStoreActionController.startAction(
+        name: '_CounterStore.decrementCounter');
     try {
-      return super.decrement();
+      return super.decrementCounter();
     } finally {
-      _$_CounterActionController.endAction(_$actionInfo);
+      _$_CounterStoreActionController.endAction(_$actionInfo);
     }
   }
 
