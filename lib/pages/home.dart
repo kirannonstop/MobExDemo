@@ -1,5 +1,4 @@
 import 'package:first_mobex_flutter_project/pages/counter_example.dart';
-import 'package:first_mobex_flutter_project/pages/post_list.dart';
 import 'package:first_mobex_flutter_project/pages/timer/stopwatch_demo.dart';
 import 'package:first_mobex_flutter_project/pages/user_list.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +16,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     // TODO: implement initState
-    _tabController = TabController(length: 4, vsync: this);
+    _tabController = TabController(length: 3, vsync: this);
     super.initState();
   }
 
@@ -29,9 +28,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         bottom: TabBar(controller: _tabController, tabs: <Widget>[
           Tab(
             text: "Users",
-          ),
-          Tab(
-            text: "Posts",
           ),
           Tab(
             text: "Counter Example",
@@ -46,7 +42,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           controller: _tabController,
           children: [
             UserList(),
-            PostList(),
+            //PostList(),
             CounterExample(),
             StopWatchTimerPage(),
           ],

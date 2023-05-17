@@ -5,5 +5,5 @@ abstract class CounterRepository {
 
   void decrementCounter();
 
-  int getCoumputedValue();
+  int getComputedValue();
 }

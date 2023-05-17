@@ -7,6 +7,8 @@ class CounterExample extends StatelessWidget {
   CounterRepository counterRepository = CounterStore();
   int valueRes = 0;
 
+  void aa() {}
+
   @override
   Widget build(BuildContext context) {
     print("REBUILD");
@@ -15,7 +17,7 @@ class CounterExample extends StatelessWidget {
         children: [
           Observer(builder: (_) {
             return Text(
-              "Value ${counterRepository.getCounter()} , Computed Value ${counterRepository.getCoumputedValue()}",
+              "Value ${counterRepository.getCounter()} , Computed Value ${counterRepository.getComputedValue()}",
               style: TextStyle(fontSize: 20),
             );
           }),

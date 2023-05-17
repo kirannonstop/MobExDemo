@@ -1,4 +1,4 @@
-import 'package:first_mobex_flutter_project/mobx/network_service.dart';
+import 'package:first_mobex_flutter_project/network/api_service_abstract_class.dart';
 import 'package:mobx/mobx.dart';
 
 import '../models/models.dart';
@@ -8,7 +8,9 @@ part 'user_store.g.dart';
 class UserStore = _UserStore with _$UserStore;
 
 abstract class _UserStore with Store {
-  final NetworkService networkService = NetworkService();
+  final ApiServiceAbstractClass apiService;
+
+  _UserStore(this.apiService);
 
   @observable
   ObservableFuture<List<User>>? userListFuture;
@@ -27,7 +29,7 @@ abstract class _UserStore with Store {
   @action
   fetchUsers() {
     userListFuture = ObservableFuture(
-      networkService.getData('https://reqres.in/api/users?page=1'),
+      apiService.getUserList(),
     ); /*.then(
         (users) {
           /*if (users.isNotEmpty) {

@@ -1,22 +1,24 @@
-import 'package:first_mobex_flutter_project/mobx/models/models.dart';
-import 'package:first_mobex_flutter_project/mobx/network_service.dart';
 import 'package:mobx/mobx.dart';
+
+import '../../network/api_service_abstract_class.dart';
+import '../models/models.dart';
 
 part 'post_store.g.dart';
 
 class PostStore = _PostStore with _$PostStore;
 
 abstract class _PostStore with Store {
-  final NetworkService networkService = NetworkService();
+  final ApiServiceAbstractClass apiService;
+
+  _PostStore(this.apiService);
 
   @observable
   ObservableFuture<List<Post>>? postListFuture;
 
   @action
   fetchPost() {
-    postListFuture = ObservableFuture(networkService
-        .getPosts('https://jsonplaceholder.typicode.com/posts')
-        .then((posts) => posts));
+    postListFuture =
+        ObservableFuture(apiService.getPostList().then((posts) => posts));
   }
 
   void getThePost() {

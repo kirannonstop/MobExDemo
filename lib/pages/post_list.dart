@@ -1,11 +1,13 @@
 import 'package:first_mobex_flutter_project/mobx/models/models.dart';
 import 'package:first_mobex_flutter_project/mobx/store/post_store.dart';
+import 'package:first_mobex_flutter_project/network/api_service_abstract_class_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:http/http.dart' as http;
 import 'package:mobx/mobx.dart';
 
 class PostList extends StatelessWidget {
-  PostStore postStore = PostStore();
+  PostStore postStore = PostStore(ApiServiceAbstractClassImpl(http.Client()));
 
   PostList({super.key}) {
     postStore.getThePost();

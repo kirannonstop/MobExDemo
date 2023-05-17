@@ -31,7 +31,7 @@ abstract class _CounterStore with Store implements CounterRepository {
   }
 
   @override
-  int getCoumputedValue() {
+  int getComputedValue() {
     // TODO: implement getCoumputedValue
     return doubleValue;
   }
