@@ -21,11 +21,12 @@ class UserList extends StatelessWidget {
     final future = userStore.userListFuture;
     return ReactionBuilder(
       builder: (context) {
-        print(userStore.lastUser);
-        return reaction((_) => userStore.lastUser, (_) {
-          //print("USER ---> ${userList[index].email} ");
+        return reaction((_) => userStore.lastComputedUser, (lastComputedUser) {
+          print("USER ---> ${lastComputedUser?.email} ");
+          // if (lastComputedUser != null) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text("This is snackbar ${userStore.lastUser?.email}")));
+              content: Text("This is snackbar ${lastComputedUser?.email}")));
+          //}
         });
       },
       child: Observer(

@@ -13,21 +13,29 @@ abstract class _UserStore with Store {
   @observable
   ObservableFuture<List<User>>? userListFuture;
 
+/*
   @observable
-  User? lastUser;
+  User? lastUser;*/
+
+  @computed
+  User? get lastComputedUser {
+    if (userListFuture != null && userListFuture!.value!.isNotEmpty) {
+      return userListFuture!.value!.last;
+    }
+  }
 
   @action
   fetchUsers() {
     userListFuture = ObservableFuture(
-      networkService
-          .getData('https://reqres.in/api/users?page=1')
-          .then((users) {
-        if (users.isNotEmpty) {
+      networkService.getData('https://reqres.in/api/users?page=1'),
+    ); /*.then(
+        (users) {
+          /*if (users.isNotEmpty) {
           lastUser = users.last;
-        }
-        return users;
-      }),
-    );
+        }*/
+          return users;
+        },*/
+
     //lastIndex = userListFuture.
   }
 

@@ -38,7 +38,7 @@ dependencies:
   mobx:
   flutter_mobx:
   http:
-  provider:
+#  provider:
 
 dev_dependencies:
   mockito:
