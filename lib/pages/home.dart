@@ -1,6 +1,7 @@
 import 'package:first_mobex_flutter_project/mobx/store/counter_store/counter_store.dart';
 import 'package:first_mobex_flutter_project/mobx/store/user_store.dart';
 import 'package:first_mobex_flutter_project/pages/counter_example.dart';
+import 'package:first_mobex_flutter_project/pages/shrinkwrap_vs_silver.dart';
 import 'package:first_mobex_flutter_project/pages/some_poc.dart';
 import 'package:first_mobex_flutter_project/pages/timer/stopwatch_demo.dart';
 import 'package:first_mobex_flutter_project/pages/user_list.dart';
@@ -21,7 +22,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     // TODO: implement initState
-    _tabController = TabController(length: 4, vsync: this);
+    _tabController = TabController(length: 5, vsync: this);
     super.initState();
   }
 
@@ -43,6 +44,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           Tab(
             text: "Some POC",
           ),
+          Tab(text: "ShrinkWrap vs Silver"),
         ]),
       ),
       body: SafeArea(
@@ -59,6 +61,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             ),
             StopWatchTimerPage(),
             SomePOC(),
+            ShrinkWrapVsSilver()
           ],
         ),
       ),
