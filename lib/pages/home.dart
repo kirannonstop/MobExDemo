@@ -1,7 +1,12 @@
+import 'package:first_mobex_flutter_project/mobx/store/counter_store/counter_store.dart';
+import 'package:first_mobex_flutter_project/mobx/store/user_store.dart';
 import 'package:first_mobex_flutter_project/pages/counter_example.dart';
+import 'package:first_mobex_flutter_project/pages/some_poc.dart';
 import 'package:first_mobex_flutter_project/pages/timer/stopwatch_demo.dart';
 import 'package:first_mobex_flutter_project/pages/user_list.dart';
 import 'package:flutter/material.dart';
+
+import '../network/api_service_abstract_class_impl.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -16,7 +21,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     // TODO: implement initState
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 4, vsync: this);
     super.initState();
   }
 
@@ -34,17 +39,26 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           ),
           Tab(
             text: "Timer Demo",
-          )
+          ),
+          Tab(
+            text: "Some POC",
+          ),
         ]),
       ),
       body: SafeArea(
         child: TabBarView(
           controller: _tabController,
           children: [
-            UserList(),
-            //PostList(),
-            CounterExample(),
+            UserList(
+              userStore: UserStore(ApiServiceAbstractClassImpl()),
+              //userStore: UserStore(MockServiceAbstractClassImpl()),
+            ),
+            //PostList(postStore : PostStore(ApiServiceAbstractClassImpl())),
+            CounterExample(
+              counterRepository: CounterStore(),
+            ),
             StopWatchTimerPage(),
+            SomePOC(),
           ],
         ),
       ),

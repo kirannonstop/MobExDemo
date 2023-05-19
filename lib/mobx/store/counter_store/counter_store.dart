@@ -6,28 +6,28 @@ part 'counter_store.g.dart';
 class CounterStore = _CounterStore with _$CounterStore;
 
 abstract class _CounterStore with Store implements CounterRepository {
-  @observable
-  int valueRes = 0;
+  @readonly
+  int _valueRes = 0;
 
   @computed
-  int get doubleValue => valueRes * 2;
+  int get doubleValue => _valueRes * 2;
 
   @override
   @action
   void incrementCounter() {
-    valueRes++;
+    _valueRes++;
   }
 
   @override
   @action
   void decrementCounter() {
-    valueRes--;
+    _valueRes--;
   }
 
   @override
   int getCounter() {
     // TODO: implement getCounter
-    return valueRes;
+    return _valueRes;
   }
 
   @override

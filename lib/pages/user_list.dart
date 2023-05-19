@@ -1,18 +1,16 @@
 import 'package:first_mobex_flutter_project/mobx/store/user_store.dart';
-import 'package:first_mobex_flutter_project/network/api_service_abstract_class_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:http/http.dart' as http;
 import 'package:mobx/mobx.dart';
 
 import '../mobx/models/models.dart';
 
 class UserList extends StatelessWidget {
-  UserStore userStore = UserStore(ApiServiceAbstractClassImpl(http.Client()));
+  UserStore userStore; //= UserStore(apiService);
 
-  //UserStore userStore = UserStore(MockServiceAbstractClassImpl());
+  //UserStore userStore;
 
-  UserList({super.key}) {
+  UserList({super.key, required this.userStore}) {
     userStore.getTheUsers();
   }
 
@@ -25,6 +23,8 @@ class UserList extends StatelessWidget {
     final future = userStore.userListFuture;
     return ReactionBuilder(
       builder: (context) {
+        /*return autorun(
+            (p0) => print("value ${userStore.lastComputedUser?.email}"));*/
         return reaction((_) => userStore.lastComputedUser, (lastComputedUser) {
           print("USER ---> ${lastComputedUser?.email} ");
           // if (lastComputedUser != null) {
@@ -101,5 +101,11 @@ class UserList extends StatelessWidget {
         },
       ),
     );
+  }
+}
+
+extension NumberParse on String {
+  int parseStringToNumber() {
+    return int.parse(this);
   }
 }

@@ -17,19 +17,21 @@ mixin _$CounterStore on _CounterStore, Store {
               name: '_CounterStore.doubleValue'))
           .value;
 
-  late final _$valueResAtom =
-      Atom(name: '_CounterStore.valueRes', context: context);
+  late final _$_valueResAtom =
+      Atom(name: '_CounterStore._valueRes', context: context);
 
-  @override
   int get valueRes {
-    _$valueResAtom.reportRead();
-    return super.valueRes;
+    _$_valueResAtom.reportRead();
+    return super._valueRes;
   }
 
   @override
-  set valueRes(int value) {
-    _$valueResAtom.reportWrite(value, super.valueRes, () {
-      super.valueRes = value;
+  int get _valueRes => valueRes;
+
+  @override
+  set _valueRes(int value) {
+    _$_valueResAtom.reportWrite(value, super._valueRes, () {
+      super._valueRes = value;
     });
   }
 
@@ -61,7 +63,6 @@ mixin _$CounterStore on _CounterStore, Store {
   @override
   String toString() {
     return '''
-valueRes: ${valueRes},
 doubleValue: ${doubleValue}
     ''';
   }
