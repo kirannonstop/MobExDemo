@@ -1,7 +1,9 @@
 import 'package:first_mobex_flutter_project/pages/my_customscrollview_for_list.dart';
 import 'package:first_mobex_flutter_project/pages/shrink_wrap_list_inside_list.dart';
+import 'package:first_mobex_flutter_project/pages/user_list.dart';
 import 'package:flutter/material.dart';
 
+import 'do_the_memory_leak.dart';
 import 'using_silverlist.dart';
 
 class ShrinkWrapVsSilver extends StatelessWidget {
@@ -35,7 +37,24 @@ class ShrinkWrapVsSilver extends StatelessWidget {
               }));
             },
             child: Text("My Program using These 2 same")),
+        ElevatedButton(
+            onPressed: () {
+              var (lat, long) = getLatitudeAndLongitude("Nashik");
+              print("LAT --> $lat");
+              print("LONG --> $long");
+            },
+            child: Text("2 return values")),
+        ElevatedButton(
+            onPressed: () {
+              MemoryLeaksScreen();
+            },
+            child: Text(
+                "Do the Memory Leak ---> ${DateTime.now().getTodaysDay()}")),
       ],
     );
+  }
+
+  (double, double) getLatitudeAndLongitude(String place) {
+    return (0.24324223, 0.3224324);
   }
 }

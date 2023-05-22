@@ -30,7 +30,7 @@ class ShrinkWrapSlivers extends StatefulWidget {
 class _ShrinkWrapSliversState extends State<ShrinkWrapSlivers> {
   List<SliverList> innerLists = [];
   final numLists = 15;
-  final numberOfItemsPerList = 100;
+  final numberOfItemsPerList = 5;
 
   @override
   void initState() {
@@ -38,12 +38,17 @@ class _ShrinkWrapSliversState extends State<ShrinkWrapSlivers> {
     for (int i = 0; i < numLists; i++) {
       final _innerList = <ColorRow>[];
       for (int j = 0; j < numberOfItemsPerList; j++) {
-        _innerList.add(const ColorRow());
+        _innerList.add(ColorRow(
+          parentId: i,
+        ));
       }
       innerLists.add(
         SliverList(
           delegate: SliverChildBuilderDelegate(
-            (BuildContext context, int index) => _innerList[index],
+            (BuildContext context, int index) {
+              print("IN BUILD --> $index");
+              return _innerList[index];
+            },
             childCount: numberOfItemsPerList,
           ),
         ),
@@ -53,13 +58,21 @@ class _ShrinkWrapSliversState extends State<ShrinkWrapSlivers> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(slivers: innerLists);
+    return Center(
+      child: Container(
+        // width: 100,
+        height: 100,
+        child: CustomScrollView(slivers: innerLists),
+      ),
+    );
   }
 }
 
 @immutable
 class ColorRow extends StatefulWidget {
-  const ColorRow({Key? key}) : super(key: key);
+  int parentId;
+
+  ColorRow({Key? key, required this.parentId}) : super(key: key);
 
   @override
   State createState() => ColorRowState();
@@ -76,7 +89,7 @@ class ColorRowState extends State<ColorRow> {
 
   @override
   Widget build(BuildContext context) {
-    print('Building ColorRowState');
+    print('Inner Child --> ${widget.parentId}');
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -96,10 +109,11 @@ class ColorRowState extends State<ColorRow> {
           ),
           Flexible(
             child: Column(
-              children: const <Widget>[
+              children: <Widget>[
                 Padding(
                   padding: EdgeInsets.all(8),
-                  child: Text('I\'m a widget!',
+                  child: Text(
+                      'I\'m a widget! --> ${widget.parentId.toString()}',
                       style: TextStyle(color: Colors.white)),
                 ),
               ],

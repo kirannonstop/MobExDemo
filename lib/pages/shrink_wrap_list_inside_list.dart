@@ -38,7 +38,9 @@ class _ShrinkWrapSliversState extends State<ShrinkWrapSlivers> {
     for (int i = 0; i < numLists; i++) {
       final _innerList = <ColorRow>[];
       for (int j = 0; j < numberOfItemsPerList; j++) {
-        _innerList.add(const ColorRow());
+        _innerList.add(ColorRow(
+          parentId: i,
+        ));
       }
       innerLists.add(
         ListView.builder(
@@ -61,7 +63,9 @@ class _ShrinkWrapSliversState extends State<ShrinkWrapSlivers> {
 
 @immutable
 class ColorRow extends StatefulWidget {
-  const ColorRow({Key? key}) : super(key: key);
+  int parentId;
+
+  ColorRow({Key? key, required this.parentId}) : super(key: key);
 
   @override
   State createState() => ColorRowState();
@@ -78,7 +82,7 @@ class ColorRowState extends State<ColorRow> {
 
   @override
   Widget build(BuildContext context) {
-    print('Building ColorRowState');
+    print('Building ColorRowState --> ${widget.parentId}');
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -98,10 +102,11 @@ class ColorRowState extends State<ColorRow> {
           ),
           Flexible(
             child: Column(
-              children: const <Widget>[
+              children: <Widget>[
                 Padding(
                   padding: EdgeInsets.all(8),
-                  child: Text('I\'m a widget!',
+                  child: Text(
+                      'I\'m a widget! --> ${widget.parentId.toString()}',
                       style: TextStyle(color: Colors.white)),
                 ),
               ],

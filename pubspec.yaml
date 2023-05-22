@@ -38,6 +38,7 @@ dependencies:
   mobx:
   flutter_mobx:
   http:
+  intl:
 #  camera: #provides a tool to capture a photo
 #  path_provider: # finds a path to store that image
 #  path: #creates path on any type of platform

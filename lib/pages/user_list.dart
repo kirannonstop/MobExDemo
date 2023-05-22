@@ -1,6 +1,7 @@
 import 'package:first_mobex_flutter_project/mobx/store/user_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:intl/intl.dart';
 import 'package:mobx/mobx.dart';
 
 import '../mobx/models/models.dart';
@@ -107,5 +108,11 @@ class UserList extends StatelessWidget {
 extension NumberParse on String {
   int parseStringToNumber() {
     return int.parse(this);
+  }
+}
+
+extension TodaysDateInString on DateTime {
+  String getTodaysDay() {
+    return DateFormat('EEEE').format(this);
   }
 }
