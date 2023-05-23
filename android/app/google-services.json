@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "464864732965",
+    "project_id": "flutternonstop",
+    "storage_bucket": "flutternonstop.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:464864732965:android:77a0ce1361cfa76058dccc",
+        "android_client_info": {
+          "package_name": "com.example.first_mobex_flutter_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "464864732965-or4v88bafuc06coiem0pf5ir8u489ip9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbC6IuTVTrk-elLUp6n2ELrbkEZiSNw4o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "464864732965-or4v88bafuc06coiem0pf5ir8u489ip9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

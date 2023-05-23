@@ -1,10 +1,11 @@
+import 'package:first_mobex_flutter_project/pages/animation_builder.dart';
 import 'package:first_mobex_flutter_project/pages/my_customscrollview_for_list.dart';
 import 'package:first_mobex_flutter_project/pages/shrink_wrap_list_inside_list.dart';
 import 'package:first_mobex_flutter_project/pages/user_list.dart';
+import 'package:first_mobex_flutter_project/pages/using_silverlist.dart';
 import 'package:flutter/material.dart';
 
 import 'do_the_memory_leak.dart';
-import 'using_silverlist.dart';
 
 class ShrinkWrapVsSilver extends StatelessWidget {
   const ShrinkWrapVsSilver({Key? key}) : super(key: key);
@@ -50,6 +51,17 @@ class ShrinkWrapVsSilver extends StatelessWidget {
             },
             child: Text(
                 "Do the Memory Leak ---> ${DateTime.now().getTodaysDay()}")),
+        ElevatedButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (BuildContext context) {
+                return AnimationExample();
+              }));
+            },
+            child: Text(
+              "Animation Example",
+              style: TextStyle(inherit: false),
+            )),
       ],
     );
   }

@@ -39,6 +39,13 @@ dependencies:
   flutter_mobx:
   http:
   intl:
+  device_preview: ^1.1.0
+  firebase_auth: ^4.6.1
+  firebase_dynamic_links: ^5.3.1
+  firebase_core: ^2.13.0
+  get: ^4.6.5
+  flutter_easyloading: ^3.0.5
+  shared_preferences: ^2.0.15
 #  camera: #provides a tool to capture a photo
 #  path_provider: # finds a path to store that image
 #  path: #creates path on any type of platform
