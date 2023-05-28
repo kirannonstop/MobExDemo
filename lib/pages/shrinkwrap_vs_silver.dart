@@ -1,10 +1,16 @@
+import 'package:first_mobex_flutter_project/mobx/store/school_store/student_store.dart';
+import 'package:first_mobex_flutter_project/mobx/store/school_store/teacher_store.dart';
+import 'package:first_mobex_flutter_project/network/api_service_abstract_class.dart';
 import 'package:first_mobex_flutter_project/pages/animation_builder.dart';
 import 'package:first_mobex_flutter_project/pages/my_customscrollview_for_list.dart';
+import 'package:first_mobex_flutter_project/pages/school/student_screen.dart';
+import 'package:first_mobex_flutter_project/pages/school/teacher_screen.dart';
 import 'package:first_mobex_flutter_project/pages/shrink_wrap_list_inside_list.dart';
 import 'package:first_mobex_flutter_project/pages/user_list.dart';
 import 'package:first_mobex_flutter_project/pages/using_silverlist.dart';
 import 'package:flutter/material.dart';
 
+import 'check_performance_by_class.dart';
 import 'do_the_memory_leak.dart';
 
 class ShrinkWrapVsSilver extends StatelessWidget {
@@ -60,7 +66,42 @@ class ShrinkWrapVsSilver extends StatelessWidget {
             },
             child: Text(
               "Animation Example",
-              style: TextStyle(inherit: false),
+              //  style: TextStyle(inherit: false),
+            )),
+        ElevatedButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (BuildContext context) {
+                return ListViewBuilderExample();
+              }));
+            },
+            child: Text(
+              "PerformanceCheck",
+              //  style: TextStyle(inherit: false),
+            )),
+        ElevatedButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (BuildContext context) {
+                return StudentScreen(
+                    studentStore: StudentStore(schoolProtocol: StudentImpl()));
+              }));
+            },
+            child: Text(
+              "Student",
+              //  style: TextStyle(inherit: false),
+            )),
+        ElevatedButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (BuildContext context) {
+                return TeacherScreen(
+                    teacherStore: TeacherStore(schoolProtocol: TeacherImpl()));
+              }));
+            },
+            child: Text(
+              "Teacher",
+              // style: TextStyle(inherit: false),
             )),
       ],
     );

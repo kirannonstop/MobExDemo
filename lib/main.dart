@@ -1,14 +1,12 @@
 import 'package:device_preview/device_preview.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:first_mobex_flutter_project/pages/home.dart';
 import 'package:flutter/material.dart';
 
-import 'firebase_options.dart';
-
-void main() async {
+main() async {
+  /*WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-  );
+  );*/
   runApp(
     DevicePreview(
       enabled: false,
@@ -37,3 +35,30 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+/*
+class MyApp2 extends StatelessWidget {
+  const MyApp2({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        theme: ThemeData(
+            textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(),
+        )),
+        debugShowCheckedModeBanner: false,
+        home: const Home());
+  }
+}
+
+class Home extends StatelessWidget {
+  const Home({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    print('Home build');
+    return Scaffold(
+      backgroundColor: Theme.of(context).primaryColor,
+    );
+  }
+}*/

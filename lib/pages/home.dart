@@ -8,6 +8,7 @@ import 'package:first_mobex_flutter_project/pages/user_list.dart';
 import 'package:flutter/material.dart';
 
 import '../network/api_service_abstract_class_impl.dart';
+import 'expansiontile_demo.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -22,7 +23,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     // TODO: implement initState
-    _tabController = TabController(length: 5, vsync: this);
+    _tabController = TabController(length: 6, vsync: this);
     super.initState();
   }
 
@@ -45,6 +46,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             text: "Some POC",
           ),
           Tab(text: "ShrinkWrap vs Silver"),
+          Tab(text: "Expansion Tile Demo"),
+          //Tab(text: "Theme Extension"),
         ]),
       ),
       body: SafeArea(
@@ -61,7 +64,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             ),
             StopWatchTimerPage(),
             SomePOC(),
-            ShrinkWrapVsSilver()
+            ShrinkWrapVsSilver(),
+            CheckExpansionTileList()
           ],
         ),
       ),

@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+
 import '../mobx/models/models.dart';
 
 //OC LS DI
@@ -7,8 +11,51 @@ mixin ApiServiceAbstractClass {
   Future getPostList();
 }
 
-mixin MockServiceAbstractClass implements ApiServiceAbstractClass {
-  Future getTestCases();
+abstract class SchoolProtocol {
+  Future getData();
+}
+
+class StudentImpl extends SchoolProtocol {
+  List<User> students = [];
+
+  @override
+  getData() async {
+    // TODO: implement getData
+    print("THIS IS STUDENT INFO");
+    final response =
+        await http.get(Uri.parse('https://reqres.in/api/users?page=1'));
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      students = (data['data'] as List).map((json) {
+        return User.fromJSON(json);
+      }).toList();
+      return students;
+    } else {
+      print("Error in URL");
+      return [];
+    }
+  }
+}
+
+class TeacherImpl extends SchoolProtocol {
+  List<Post> posts = [];
+
+  @override
+  getData() async {
+    // TODO: implement getData
+    print("THIS IS TEACHER INFO");
+    final response =
+        await http.get(Uri.parse('https://jsonplaceholder.typicode.com/posts'));
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      posts = (data as List).map((json) {
+        return Post.fromJSON(json);
+      }).toList();
+      return posts;
+    } else {
+      print("Error in URL");
+    }
+  }
 }
 
 abstract class HumanMixin {
